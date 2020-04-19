@@ -63,4 +63,4 @@ Method : Get <br />
 5. Get All Slots  <br />
 Url: {{base_uri}}/calendar?status=available&scope= <br />
 Method : Get <br />
-Description : filter by status is available (Accepted values "available", "booked") and scope parameter with value created_by_me can be used get all slots created by a registered user (to use scope Authorization header with token is required) <br />
+Description : filter by status is available (Accepted values "available", "booked") and scope parameter with value created_by_me can be used get all slots created by a registered user (to use scope, Authorization header with token is required) <br />
