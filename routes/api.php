@@ -40,6 +40,7 @@ $api->version('v1', ['namespace' => 'App\Api\V1\Controllers', 'middleware' => 'b
 
         $api->group(['prefix' => 'calendar'], function ($api) {
             $api->post('/', 'CalendarController@store');
+            $api->delete('/{slot}', 'CalendarController@destroy');
         });
     });
 

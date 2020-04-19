@@ -15,15 +15,16 @@ use App\Api\V1\Requests\Calendar\{ListRequest, CreateRequest, ViewRequest, Delet
 class CalendarController extends Controller
 {
    
-    public function index(ListRequest $request)
+    public function index(ListRequest $request) 
     {
        $slots = Calendar::when($request->filled('status'), function($query) use($request){
                     $query->where('status', $request->status);
                 })->when($request->filled('scope') && auth('api')->check(), function($query){
                     $query->where('owner_id', auth('api')->user()->_id);
                 });
-
-        return CalendarResource::collection($slots->paginate($request->get('page_size')));
+        
+        //All API data responses get filtered by passing the objects through Resources which filters and sends out only necessary attributes.
+        return CalendarResource::collection($slots->paginate($request->get('page_size')));  
     }
 
     public function store(CreateRequest $request)
@@ -36,7 +37,7 @@ class CalendarController extends Controller
         return (new CalendarResource($slot))->response()->setStatusCode(201);
     }
 
-    public function show(ViewRequest $request, Calendar $slot)
+    public function show(ViewRequest $request, Calendar $slot) //Route Model Binding is used instead of standard querying 
     {   
         return (new CalendarResource($slot))->response()->setStatusCode(200);
     }
