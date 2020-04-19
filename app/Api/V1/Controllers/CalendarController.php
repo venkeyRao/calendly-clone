@@ -17,7 +17,13 @@ class CalendarController extends Controller
    
     public function index(ListRequest $request)
     {
-        $email = auth('api')->check() ? auth('api')->user()->email : $request->email;
+       $slots = Calendar::when($request->filled('status'), function($query) use($request){
+                    $query->where('status', $request->status);
+                })->when($request->filled('scope') && auth('api')->check(), function($query){
+                    $query->where('owner_id', auth('api')->user()->_id);
+                });
+
+        return CalendarResource::collection($slots->paginate($request->get('page_size')));
     }
 
     public function store(CreateRequest $request)
