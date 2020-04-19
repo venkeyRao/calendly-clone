@@ -1,7 +1,7 @@
 Demo Calendar Slot Booking service, similar to that of Calendly, which allows people
 to define their available slots on a day and other people to book them. <br />
 
-<strong> base URL: http://3.7.36.29/api   <br />
+<strong> Base URI for the API's: http://3.7.36.29/api   <br />
 Postman Collection Imort: https://www.getpostman.com/collections/62afb905b9512757eeeb  </strong> <br />
 
 Available API details are mentioned below  <br />
